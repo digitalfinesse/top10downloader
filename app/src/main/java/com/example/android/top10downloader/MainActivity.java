@@ -23,8 +23,10 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(TAG, "onCreate: starting Asynctask");
         DownloadData downloadData = new DownloadData();
-        downloadData.execute("URL goes here");
+        downloadData.execute("http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/topfreeapplications/limit=10/xml");
         Log.d(TAG, "onCreate: done");
+
+
     }
 
     private class DownloadData extends AsyncTask<String, Void, String> {
@@ -52,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
             try {
                 URL url = new URL(urlPath);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                int response = connection.getResponseCode();
-                Log.d(TAG, "downloadXML: The response code was " + response);
+//                int response = connection.getResponseCode();
+//                Log.d(TAG, "downloadXML: The response code was " + response);
 //                InputStream inputStream = connection.getInputStream();
 //                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
 //                BufferedReader reader = new BufferedReader(inputStreamReader);
@@ -71,12 +73,26 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 reader.close();
+                return xmlResult.toString();
             } catch (MalformedURLException e) {
                 Log.e(TAG, "downloadXML: Invalid URL " + e.getMessage());
             } catch (IOException e) {
                 Log.e(TAG, "downloadXML: IO Exception reading data: " + e.getMessage());
+            } catch (SecurityException e) {
+                Log.e(TAG, "downloadXML: Security Exception. Needs permissions? " + e.getMessage());
+//                e.printStackTrace();
             }
+            return null;
         }
 
     }
 }
+
+
+
+
+
+
+
+
+
