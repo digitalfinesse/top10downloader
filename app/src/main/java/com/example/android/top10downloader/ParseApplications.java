@@ -8,10 +8,6 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.StringReader;
 import java.util.ArrayList;
 
-/**
- * Created by asd on 30.09.17.
- */
-
 public class ParseApplications {
     private static final String TAG = "ParseApplications";
     private ArrayList<FeedEntry> applications;
@@ -28,6 +24,7 @@ public class ParseApplications {
         boolean status = true;
         FeedEntry currentRecord = null;
         boolean inEntry = false;
+        boolean gotImage = false;
         String textValue = "";
 
         try {
@@ -78,7 +75,10 @@ public class ParseApplications {
                 eventType = xpp.next();
 
             }
-
+            for (FeedEntry app: applications) {
+                Log.d(TAG, "*********************");
+                Log.d(TAG, app.toString());
+            }
 
         } catch (Exception e) {
             status = false;
@@ -88,3 +88,23 @@ public class ParseApplications {
         return status;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
