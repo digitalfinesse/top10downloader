@@ -4,6 +4,8 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -27,9 +29,25 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(TAG, "onCreate: starting Asynctask");
         DownloadData downloadData = new DownloadData();
-        downloadData.execute("http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/topfreeapplications/limit=50/xml");
+        downloadData.execute("http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/topfreeapplications/limit=10/xml");
         Log.d(TAG, "onCreate: done");
 
+    }
+
+//    @Override
+//    public void supportInvalidateOptionsMenu() {
+//        super.supportInvalidateOptionsMenu();
+//    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.feed_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 
     private class DownloadData extends AsyncTask<String, Void, String> {
@@ -38,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            Log.d(TAG, "onPostExecute: parameter is " + s);
+//            Log.d(TAG, "onPostExecute: parameter is " + s);
             ParseApplications parseApplications = new ParseApplications();
             parseApplications.parse(s);
 
