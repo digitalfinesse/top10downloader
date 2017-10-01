@@ -1,8 +1,5 @@
 package com.example.android.top10downloader;
 
-/**
- * Created by asd on 30.09.17.
- */
 
 public class FeedEntry {
 
