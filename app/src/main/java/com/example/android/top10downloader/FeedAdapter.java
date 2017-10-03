@@ -44,10 +44,6 @@ public class FeedAdapter extends ArrayAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-//        TextView tvName = (TextView) convertView.findViewById(R.id.tvName);
-//        TextView tvArtist = (TextView) convertView.findViewById(R.id.tvArtist);
-//        TextView tvSummary = (TextView) convertView.findViewById(R.id.tvSummary);
-
         FeedEntry currentApp = applications.get(position);
         viewHolder.tvName.setText(currentApp.getName());
         viewHolder.tvArtist.setText(currentApp.getArtist());

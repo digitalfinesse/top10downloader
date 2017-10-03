@@ -24,4 +24,7 @@
             android:id="@+id/mnuTop25"
             android:title="Top25" />
     </group>
+    <item
+        android:id="@+id/mnuRefresh"
+        android:title="Refresh" />
 </menu>
